@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriGuide - Your Personal Diet Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+        }
+        
+        .meal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .nutri-meter {
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(to right, #ef4444, #f59e0b, #10b981);
+        }
+        
+        .progress-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            position: absolute;
+            top: -4px;
+            transform: translateX(-50%);
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-utensils text-blue-500 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-gray-800">NutriGuide</span>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="#" class="border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Dashboard</a>
+                        <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Meal Plans</a>
+                        <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Recipes</a>
+                        <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Progress</a>
+                    </div>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                    <button class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none">
+                        <i class="fas fa-bell h-6 w-6"></i>
+                    </button>
+                    <div class="ml-3 relative">
+                        <div>
+                            <button class="bg-white rounded-full flex text-sm focus:outline-none">
+                                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none">
+                        <i class="fas fa-bars h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <!-- Welcome Banner -->
+        <div class="gradient-bg rounded-xl p-6 text-white mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                <div>
+                    <h1 class="text-2xl font-bold mb-2">Good morning, Sarah!</h1>
+                    <p class="mb-4">You're making great progress toward your weight loss goal.</p>
+                    <button class="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-blue-50 transition">View Progress</button>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <div class="flex items-center">
+                        <div class="mr-4 text-center">
+                            <div class="text-3xl font-bold">1,450</div>
+                            <div class="text-sm opacity-80">Calories today</div>
+                        </div>
+                        <div class="mr-4 text-center">
+                            <div class="text-3xl font-bold">72g</div>
+                            <div class="text-sm opacity-80">Protein</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold">5</div>
+                            <div class="text-sm opacity-80">Meals logged</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Left Column -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Today's Meals -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold text-gray-800">Today's Meal Plan</h2>
+                        <button class="text-blue-500 hover:text-blue-700 text-sm font-medium">View All</button>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Breakfast -->
+                        <div class="meal-card bg-white border border-gray-100 rounded-lg p-4 transition duration-300 ease-in-out hover:shadow-lg">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-egg text-blue-500 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800">Breakfast</h3>
+                                    <p class="text-gray-600 text-sm">Greek Yogurt with Berries</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="text-xs font-medium text-gray-500">320 cal</span>
+                                        <span class="mx-2 text-gray-300">•</span>
+                                        <span class="text-xs font-medium text-gray-500">22g protein</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Lunch -->
+                        <div class="meal-card bg-white border border-gray-100 rounded-lg p-4 transition duration-300 ease-in-out hover:shadow-lg">
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-utensils text-green-500 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800">Lunch</h3>
+                                    <p class="text-gray-600 text-sm">Quinoa Salad with Chickpeas</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="text-xs font-medium text-gray-500">450 cal</span>
+                                        <span class="mx-2 text-gray-300">•</span>
+                                        <span class="text-xs font-medium text-gray-500">18g protein</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Dinner -->
+                        <div class="meal-card bg-white border border-gray-100 rounded-lg p-4 transition duration-300 ease-in-out hover:shadow-lg">
+                            <div class="flex items-start">
+                                <div class="bg-purple-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-drumstick-bite text-purple-500 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800">Dinner</h3>
+                                    <p class="text-gray-600 text-sm">Grilled Salmon with Vegetables</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="text-xs font-medium text-gray-500">520 cal</span>
+                                        <span class="mx-2 text-gray-300">•</span>
+                                        <span class="text-xs font-medium text-gray-500">32g protein</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Snack -->
+                        <div class="meal-card bg-white border border-gray-100 rounded-lg p-4 transition duration-300 ease-in-out hover:shadow-lg">
+                            <div class="flex items-start">
+                                <div class="bg-yellow-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-apple-alt text-yellow-500 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800">Snack</h3>
+                                    <p class="text-gray-600 text-sm">Almonds & Dark Chocolate</p>
+                                    <div class="flex items-center
+</html>
